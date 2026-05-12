@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Cloud Security Dashboard</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+</head>
+
+<body class="bg-dark text-light">
+
+<div class="container mt-5">
+
+    <h1 class="text-center mb-5">
+        REAL-TIME MULTI-CLOUD THREAT DASHBOARD
+    </h1>
+
+    <div class="row">
+
+        <!-- Total Findings -->
+        <div class="col-md-4">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">
+                    <h3>Total Findings</h3>
+                    <h1>{{ total_findings }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Failed Findings -->
+        <div class="col-md-4">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">
+                    <h3>Failed Findings</h3>
+                    <h1>{{ failed_findings }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- High Severity -->
+        <div class="col-md-4">
+            <div class="card bg-warning text-dark mb-4">
+                <div class="card-body">
+                    <h3>High Severity</h3>
+                    <h1>{{ severity_counter['HIGH'] }}</h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- AWS + Azure Cards -->
+    <div class="row">
+
+        <!-- AWS Findings -->
+        <div class="col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">
+                    <h3>AWS Findings</h3>
+                    <h1>{{ aws_findings }}</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Azure Findings -->
+        <div class="col-md-6">
+            <div class="card bg-info text-white mb-4">
+                <div class="card-body">
+                    <h3>Azure Findings</h3>
+                    <h1>{{ azure_findings }}</h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Severity Breakdown -->
+    <div class="card bg-secondary mb-4">
+
+        <div class="card-body">
+
+            <h3>Severity Breakdown</h3>
+
+            <ul>
+                {% for severity, count in severity_counter.items() %}
+                    <li>{{ severity }} : {{ count }}</li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
+    </div>
+
+    <!-- Top Services -->
+    <div class="card bg-secondary">
+
+        <div class="card-body">
+
+            <h3>Top Affected Services</h3>
+
+            <table class="table table-dark table-striped">
+
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Threat Count</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for service, count in top_services %}
+
+                    <tr>
+                        <td>{{ service }}</td>
+                        <td>{{ count }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

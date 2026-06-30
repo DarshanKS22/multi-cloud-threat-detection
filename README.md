@@ -123,3 +123,38 @@ Alert Engine
 Flask Dashboard
       ↓
 GitHub Actions CI/CD
+
+## Steps for Execution
+- cd path/to/multi-cloud-threat-detection
+- source venv/bin/activate
+- prowler -v
+- aws sts get-caller-identity
+- az login
+    - ./scripts/run_scan.sh ( all below will run )
+- prowler aws
+- prowler azure --az-cli-auth
+- python3 scripts/parser.py
+- python3 scripts/alert.py
+
+- python3 app.py
+
+
+
+-- cd output 
+-- open .
+
+
+-- what are checked 
+Virtual Machines
+Storage Accounts
+Networks
+Microsoft Entra ID
+Defender
+Monitor
+Resource Groups
+Policies
+Backup
+Containers
+Security Settings
+   * security checks did not satisfy the expected security configuration.
+   *These are security findings, not confirmed cyber attacks.

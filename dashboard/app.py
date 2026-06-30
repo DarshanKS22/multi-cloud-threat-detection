@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import json
 import glob
+import os
 from collections import Counter
 
 app = Flask(__name__)
@@ -10,7 +11,7 @@ app = Flask(__name__)
 def dashboard():
 
     # Read ALL JSON reports
-    json_files = glob.glob("output/*.ocsf.json")
+    json_files = glob.glob(os.path.join("..", "output", "*.ocsf.json"))
 
     if not json_files:
         return "No reports found!"

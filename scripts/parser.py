@@ -13,7 +13,7 @@ if not json_files:
     print("No JSON report found!")
     exit()
 
-latest_file = max(json_files)
+latest_file = max(json_files, key=lambda f: __import__("os").path.getmtime(f))
 
 print(f"\nReading Report: {latest_file}")
 
